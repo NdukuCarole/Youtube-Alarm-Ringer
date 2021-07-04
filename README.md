@@ -46,5 +46,9 @@ To run tests :
 ```
   python -m pytest test_alarm.py
   ```
+  
+  <h2>Crediits</h2>
+  <a href="https://github.com/kahlinah/">1.Caroline Katumo</a><br>
+  <a href="https://skaehub.com/">2.Skaehub</a>
 
 
