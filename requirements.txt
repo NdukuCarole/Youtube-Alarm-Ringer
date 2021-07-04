@@ -1,0 +1,5 @@
+Download selenium based on your OS
+Extract It
+Run It to activate
+Place in the same Directory as your Program Directory
+ 
