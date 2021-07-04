@@ -10,7 +10,7 @@ from selenium.common.exceptions import WebDriverException,NoSuchElementException
 
 
 def getinputs():
-        #user input to record the log
+        #user input for the links
         name = input("link:")
 
         return(name)
@@ -30,10 +30,10 @@ while True:
    
 
 
-    #If video URL file does not exist, create one
+   
 def check_alarm_input(alarm_time):
     
-        """Checks to see if the user has entered in a valid alarm time"""
+       #Checks to see if the user has entered in a valid alarm time"""
         if len(alarm_time) == 1: # [Hour] Format
 
          if alarm_time[0] < 24 and alarm_time[0] >= 0:
