@@ -4,7 +4,8 @@
 import datetime
 import time
 import random
-import os
+import sched
+import re
 
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException,NoSuchElementException
@@ -25,9 +26,19 @@ def getinputs():
 
             name = input("link:")
             
+            youtube_regex = (
+                    r'(https?://)?(www\.)?'
+                    '(youtube|youtu|youtube-nocookie)\.(com|be)/'
+                    '(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})')
 
-            with open("youtube.txt","w") as f:
-                f.write(name)
+            youtube_regex_match = re.match(youtube_regex, name)
+            if youtube_regex_match:
+                        
+                with open("youtube.txt","w") as f:
+                    f.write(name)
+            else:
+                        print("url is not valid")
+
 
 
 
