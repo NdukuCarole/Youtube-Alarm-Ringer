@@ -2,4 +2,6 @@ Download selenium based on your OS
 Extract It
 Run It to activate
 Place in the same Directory as your Program Directory
- 
+Install regex so that the links are crosschecked 
+Download and Install twilio
+Create a system.txt file and place links of your choice. This is if the user does not insert their links
