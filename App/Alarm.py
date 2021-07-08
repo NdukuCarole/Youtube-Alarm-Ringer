@@ -1,3 +1,4 @@
+
 """ Alarm Clock
 ----------------------------------------
 """
@@ -7,16 +8,26 @@ import random
 import re
 
 
-
-import os
-
-
-
-
-
-
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException,NoSuchElementException
+
+
+import os
+from twilio.rest import Client
+
+
+TWILIO_PHONE_NUMBER = "the number youre calling from"
+
+DIAL_NUMBERS = ["The number you want to call"]
+TWIML_INSTRUCTIONS_URL = \
+  "http://static.fullstackpython.com/phone-calls-python.xml"
+
+client = Client("ACCOUNT SID", "AUTH TOKEN")
+
+
+
+
+
 
 
      
@@ -126,6 +137,27 @@ if time_diff_seconds < 0:
 
 # Display the amount of time until the alarm goes off
 print("Alarm set to go off in %s" % datetime.timedelta(seconds=time_diff_seconds))
+
+
+
+
+
+def dial_numbers(numbers_list):
+    """Dials one or more phone numbers from a Twilio phone number."""
+    for number in numbers_list:
+        print("Dialing " + number)
+        # set the method to "GET" from default POST because Amazon S3 only
+        # serves GET requests on files. Typically POST would be used for apps
+        client.calls.create(to=number, from_=TWILIO_PHONE_NUMBER,
+                            url=TWIML_INSTRUCTIONS_URL, method="GET")
+
+
+
+
+
+
+
+
 #Sleep until the alarm goes off
 time.sleep(time_diff_seconds)
 #Time for the alarm to go off
@@ -159,3 +191,8 @@ except WebDriverException as e:
     print("An error occured ", e)
 
 
+
+
+
+if __name__ == "__main__":
+    dial_numbers(DIAL_NUMBERS)
