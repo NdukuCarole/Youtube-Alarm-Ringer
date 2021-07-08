@@ -4,8 +4,16 @@
 import datetime
 import time
 import random
-import sched
 import re
+
+
+
+import os
+
+
+
+
+
 
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException,NoSuchElementException
@@ -14,40 +22,54 @@ from selenium.common.exceptions import WebDriverException,NoSuchElementException
      
 
 def getinputs():
-    #user input to record the log
-  
+    #user input to record the 
 
     
-    while True:
-        exit = input("Do you want to add a link (y/n)? ")
-        if exit.lower() == 'n':
-            break
-        else:
-
-            name = input("link:")
-            
-            youtube_regex = (
-                    r'(https?://)?(www\.)?'
-                    '(youtube|youtu|youtube-nocookie)\.(com|be)/'
-                    '(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})')
-
-            youtube_regex_match = re.match(youtube_regex, name)
-            if youtube_regex_match:
+ while True:
+    exit = input("Do you want to add a link (y/n)?  ")
+    if exit.lower() == 'n':
+            print() 
+            choice = input("""
+     Would you like to use system links (y/n)?
                         
-                with open("youtube.txt","w") as f:
-                    f.write(name)
+                        """)
+            if exit.lower() == 'n':
+              
+                 break
             else:
-                        print("url is not valid")
+               youtube=("https://youtu.be/6CHs4x2uqcQ?list=RD6CHs4x2uqcQ")
+               with open("system.txt","w") as f:
+                f.write(youtube)
+
+                
+
+    else:
+
+        name = input("link:")
+                
+        youtube_regex = (
+                        r'(https?://)?(www\.)?'
+                        '(youtube|youtu|youtube-nocookie)\.(com|be)/'
+                        '(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})')
+
+        youtube_regex_match = re.match(youtube_regex, name)
+        if youtube_regex_match:
+                
+            with open("youtube.txt","w") as f:
+                f.write(name)
+            
+        else:
+                print("url is not valid")
+ return  False
 
 
 
+       
 
 
-
-#If video URL file does not exist, create one
+#Alarm clock
 def check_alarm_input(alarm_time):
-   
-    
+     
 
     if len(alarm_time) == 1: # [Hour] Format
 
@@ -65,8 +87,9 @@ def check_alarm_input(alarm_time):
     return False
 
 
+
 # Get user input for the alarm time
-getinputs()
+getinputs() 
 print("Set a time for the alarm (Ex. 06:30 or 18:30:00)")
 while True:
     alarm_input = input(">> ")
@@ -111,8 +134,18 @@ print("Wake Up!")
 
 
 #Load list of possible video URLs
+
+
+with open("system.txt", "r") as alarm_file:
+    videos = alarm_file.readlines()
+
+
 with open("youtube.txt", "r") as alarm_file:
     videos = alarm_file.readlines()
+
+    
+    
+
 
 
 # Open a random video from the list
